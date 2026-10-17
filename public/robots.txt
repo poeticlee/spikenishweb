@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spikenishchemicals.com/sitemap.xml

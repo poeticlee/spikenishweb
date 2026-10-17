@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Spikenish Chemicals — design tokens (Tailwind v4)
+   Deep blue · vibrant green · white · yellow accents
+---------------------------------------------------------------- */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Deep blue */
+  --color-navy-950: #041428;
+  --color-navy-900: #072348;
+  --color-navy-800: #0a3165;
+  --color-navy-700: #0f4ea3;
+  --color-navy-600: #1a63c7;
+  --color-navy-200: #c9dcf7;
+  --color-navy-100: #dce9fb;
+  --color-navy-50: #eff5fe;
+
+  /* Deep green / vibrant green
+     leaf-600/700 are dark enough for white button text to pass WCAG AA (4.5:1) */
+  --color-forest-950: #03261a;
+  --color-forest-900: #05402a;
+  --color-forest-800: #075536;
+  --color-forest-700: #0a6b45;
+  --color-leaf-700: #097a40;
+  --color-leaf-600: #0b8546;
+  --color-leaf-500: #14b866;
+  --color-leaf-100: #d6f6e4;
+  --color-leaf-50: #ecfbf3;
+
+  /* Yellow accents */
+  --color-sun-400: #ffc53d;
+  --color-sun-300: #ffd76a;
+  --color-sun-100: #fff3d1;
+
+  /* Neutrals */
+  --color-ink-900: #101c2e;
+  --color-ink-800: #1d2b40;
+  --color-ink-700: #2b3c53;
+  --color-ink-500: #55677f;
+  --color-ink-400: #7a8aa1;
+  --color-mist-50: #f6f9fc;
+  --color-mist-100: #e9eff7;
+  --color-mist-200: #dbe4ef;
+
+  /* Brand utility */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #128c7e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink-900);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  section[id],
+  div[id] {
+    scroll-margin-top: 88px;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-leaf-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-sun-400);
+    color: var(--color-navy-950);
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Image skeleton ---------- */
+.shimmer {
+  background: linear-gradient(90deg, var(--color-mist-100) 25%, #ffffff 50%, var(--color-mist-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---------- Subtle hero backdrop ---------- */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, #000 45%, transparent 100%);
+}
+
+/* ---------- Vivid colourful backdrops ----------
+   Bright multi-colour meshes built from the brand palette
+   (blue · green · gold) plus sky, violet and coral accents. */
+.bg-vivid-hero {
+  background:
+    radial-gradient(50% 45% at 86% 14%, rgba(255, 197, 61, 0.32), transparent 60%),
+    radial-gradient(45% 42% at 12% 82%, rgba(20, 184, 102, 0.38), transparent 60%),
+    radial-gradient(42% 38% at 72% 72%, rgba(56, 189, 248, 0.26), transparent 60%),
+    radial-gradient(36% 32% at 30% 18%, rgba(139, 92, 246, 0.22), transparent 60%),
+    linear-gradient(150deg, #041428 0%, #0a3165 46%, #05402a 100%);
+}
+
+.bg-vivid-forest {
+  background:
+    radial-gradient(50% 45% at 86% 12%, rgba(255, 197, 61, 0.30), transparent 60%),
+    radial-gradient(46% 42% at 8% 86%, rgba(56, 189, 248, 0.28), transparent 60%),
+    radial-gradient(42% 38% at 52% 48%, rgba(20, 184, 102, 0.32), transparent 65%),
+    linear-gradient(160deg, #03261a 0%, #05402a 46%, #072348 100%);
+}
+
+.bg-vivid-band {
+  background:
+    radial-gradient(42% 65% at 88% 18%, rgba(255, 197, 61, 0.38), transparent 62%),
+    radial-gradient(35% 55% at 55% 90%, rgba(56, 189, 248, 0.22), transparent 60%),
+    linear-gradient(115deg, #072348 0%, #0f4ea3 44%, #0b8546 100%);
+}
+
+.bg-vivid-contact {
+  background:
+    radial-gradient(50% 45% at 86% 10%, rgba(20, 184, 102, 0.32), transparent 60%),
+    radial-gradient(44% 40% at 8% 88%, rgba(255, 197, 61, 0.22), transparent 58%),
+    radial-gradient(40% 36% at 60% 40%, rgba(56, 189, 248, 0.20), transparent 60%),
+    radial-gradient(34% 30% at 20% 30%, rgba(139, 92, 246, 0.16), transparent 60%),
+    linear-gradient(160deg, #041428 0%, #0a3165 52%, #05402a 115%);
+}
+
+.bg-vivid-footer {
+  background:
+    radial-gradient(45% 60% at 85% 0%, rgba(20, 184, 102, 0.22), transparent 60%),
+    radial-gradient(40% 55% at 10% 100%, rgba(56, 189, 248, 0.15), transparent 60%),
+    linear-gradient(180deg, #041428 0%, #072348 100%);
+}
+
+/* Light sections — pale base with bright colour pools */
+.bg-mesh-cool {
+  background:
+    radial-gradient(55% 45% at 6% 0%, rgba(56, 189, 248, 0.24), transparent 60%),
+    radial-gradient(45% 40% at 96% 14%, rgba(139, 92, 246, 0.14), transparent 60%),
+    radial-gradient(60% 50% at 50% 106%, rgba(20, 184, 102, 0.18), transparent 65%),
+    linear-gradient(180deg, #f0f9ff 0%, #ffffff 55%, #f0fdf4 100%);
+}
+
+.bg-mesh-mint {
+  background:
+    radial-gradient(55% 45% at 92% 4%, rgba(20, 184, 102, 0.22), transparent 60%),
+    radial-gradient(45% 40% at 4% 30%, rgba(56, 189, 248, 0.16), transparent 60%),
+    radial-gradient(50% 45% at 72% 104%, rgba(255, 197, 61, 0.16), transparent 60%),
+    linear-gradient(180deg, #f0fdf4 0%, #ffffff 55%, #fefce8 100%);
+}
+
+.bg-mesh-warm {
+  background:
+    radial-gradient(55% 45% at 8% 4%, rgba(255, 197, 61, 0.26), transparent 60%),
+    radial-gradient(45% 40% at 94% 24%, rgba(255, 122, 89, 0.14), transparent 60%),
+    radial-gradient(55% 45% at 46% 106%, rgba(56, 189, 248, 0.14), transparent 60%),
+    linear-gradient(180deg, #fffdf4 0%, #ffffff 55%, #f0f9ff 100%);
+}
+
+.bg-mesh-sun {
+  background:
+    radial-gradient(55% 45% at 88% 0%, rgba(255, 197, 61, 0.28), transparent 60%),
+    radial-gradient(45% 40% at 6% 42%, rgba(20, 184, 102, 0.14), transparent 60%),
+    radial-gradient(50% 45% at 62% 106%, rgba(139, 92, 246, 0.12), transparent 60%),
+    linear-gradient(180deg, #fefce8 0%, #ffffff 60%, #f0f9ff 100%);
+}
+
+.bg-mesh-white {
+  background:
+    radial-gradient(45% 35% at 102% -4%, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(40% 35% at -2% 104%, rgba(20, 184, 102, 0.10), transparent 60%),
+    #ffffff;
+}
+
+/* Dot textures */
+.pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 25%, transparent 78%);
+}
+.pattern-dots-dark {
+  background-image: radial-gradient(rgba(10, 49, 101, 0.14) 1.3px, transparent 1.3px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 20%, transparent 75%);
+}
+
+/* Multicolour ribbon */
+.spectrum-ribbon {
+  background: linear-gradient(90deg, #0ea5e9 0%, #14b866 38%, #ffc53d 72%, #8b5cf6 100%);
+}
+
+/* ---------- Floating badge ---------- */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-soft {
+  animation: float-soft 5.5s ease-in-out infinite;
+}
+
+@keyframes float-alt {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+.float-alt {
+  animation: float-alt 7s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin-slow {
+  animation: spin-slow 26s linear infinite;
+}
+
+/* ---------- WhatsApp pulse ---------- */
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.wa-pulse {
+  animation: wa-pulse 2.6s ease-out infinite;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .float-soft, .float-alt, .spin-slow, .wa-pulse, .shimmer { animation: none; }
+}
